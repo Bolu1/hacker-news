@@ -1,4 +1,4 @@
-async function feed(parent, args, context, info) {
+export async function feed(parent, args, context, info) {
     const where = args.filter
       ? {
           OR: [
