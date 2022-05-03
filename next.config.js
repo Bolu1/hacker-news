@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['source.unsplash.com'],
   },
+  experimental: {
+    esmExternals: false
+  }
 }
 
 module.exports = nextConfig
