@@ -121,7 +121,7 @@ const Layout = ({ children, title }) => {
     <div>
       <Head>
         
-        <title>{title?`${title}-HeyPI`: "HeyPi"} </title>
+        <title>{title?`${title}-HackerNews`: "HackerNews"} </title>
       </Head>
 
       <Popover className="relative bg-white :bg-gray-900">
@@ -151,11 +151,11 @@ const Layout = ({ children, title }) => {
               <p className="text-base font-medium cursor-pointer :text-gray-300 text-gray-500 hover:text-gray-900">Community</p>
                
               </Link>
-{/* 
-              <Link href="/about" passHref>
-              <p className="text-base font-medium cursor-pointer :text-gray-300 text-gray-500 hover:text-gray-900">About</p>
+
+              <Link href="/search" passHref>
+              <p className="text-base font-medium cursor-pointer :text-gray-300 text-gray-500 hover:text-gray-900">Search</p>
                
-              </Link> */}
+              </Link> 
 
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
