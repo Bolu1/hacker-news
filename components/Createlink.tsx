@@ -36,21 +36,21 @@ const [createLink] = useMutation(CREATE_LINK_MUTATION, {
       description: formState.description,
       url: formState.url
     },
-    update: (cache, { data: { post } }) => {
-      const data = cache.readQuery({
-        query: FEED_QUERY,
-      });
+    // update: (cache, { data: { post } }) => {
+    //   const data:any = cache.readQuery({
+    //     query: FEED_QUERY,
+    //   });
 
-      cache.writeQuery({
-        query: FEED_QUERY,
-        data: {
-          feed: {
-            links: [post, ...data.feed.links]
-          }
-        },
-      });
-    },
-    onCompleted: () => router.push("/")
+    //   cache.writeQuery({
+    //     query: FEED_QUERY,
+    //     data: {
+    //       feed: {
+    //         links: [post, ...data.feed.links]
+    //       }
+    //     },
+    //   });
+    // },
+    onCompleted: () =>  location.replace('http://localhost:3000/')
   });
 
   const onSubmit = async(e)=>{

@@ -29,7 +29,7 @@ export const FEED_QUERY = gql`
 `;
 
 
-const LinkList = () => {
+export default function LinkedList(props) {
 
 
 const { data } = useQuery(FEED_QUERY);
@@ -48,5 +48,26 @@ const { data } = useQuery(FEED_QUERY);
 };
 
 
+// export async function getStaticProps() {
+//   const { data } = await client.query({
+//     query: gql`
+//       query feed(skip: 0, take: 10) {
+//         links {
+//           description
+//           url
+//           postedBy {
+//             name
+//           }
+//         }
+//       }
+//     `,
+//   });
 
-export default dynamic(() => Promise.resolve(LinkList), {ssr: false})
+//   console.log(data.countries)
+
+//   return {
+//     props: {
+//       countries: data.countries.slice(0, 4),
+//     },
+//  };
+// }
