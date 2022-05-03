@@ -3,6 +3,7 @@ import { useMutation, gql } from '@apollo/client';
 import client from '../apollo-client';
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { FEED_QUERY } from './LinkList';
 
 const CreateLink = () => {
 
@@ -33,7 +34,22 @@ const [createLink] = useMutation(CREATE_LINK_MUTATION, {
     variables: {
       description: formState.description,
       url: formState.url
-    }
+    },
+    update: (cache, { data: { post } }) => {
+      const data = cache.readQuery({
+        query: FEED_QUERY,
+      });
+
+      cache.writeQuery({
+        query: FEED_QUERY,
+        data: {
+          feed: {
+            links: [post, ...data.feed.links]
+          }
+        },
+      });
+    },
+    onCompleted: () => router.push("/")
   });
 
   const onSubmit = async(e)=>{
