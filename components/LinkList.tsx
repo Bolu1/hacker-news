@@ -4,8 +4,6 @@ import { useQuery, gql } from "@apollo/client";
 import dynamic from "next/dynamic";
 import client from "../apollo-client";
 
-
-
 const LinkList = () => {
 //   const { data } = useQuery(FEED_QUERY);
 const [data, setData] = useState([])
