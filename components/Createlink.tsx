@@ -4,6 +4,7 @@ import client from '../apollo-client';
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { FEED_QUERY } from './LinkList';
+import dynamic from 'next/dynamic';
 
 const CreateLink = () => {
 
@@ -100,4 +101,4 @@ const [createLink] = useMutation(CREATE_LINK_MUTATION, {
   );
 };
 
-export default CreateLink;
+export default dynamic(() => Promise.resolve(CreateLink), {ssr: false})
