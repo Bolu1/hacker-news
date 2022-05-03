@@ -93,7 +93,7 @@ const Register = () => {
             <div className="mt-6">
               {!loading ? (
                 <button
-                  onClick={loginHandler}
+                  onClick={()=>loginHandler()}
                   className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transdiv bg-blue-600 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-gray-600"
                 >
                   Register
