@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import client from '../apollo-client';
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 const CreateLink = () => {
+
+  const router = useRouter();
+    if(!Cookies.get('user')){
+        router.push('/auth/login')
+    }
   const [formState, setFormState] = useState({
     description: '',
     url: ''

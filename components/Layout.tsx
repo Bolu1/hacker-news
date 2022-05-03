@@ -113,7 +113,7 @@ const Layout = ({ children, title }) => {
 
   const logoutHandler = ()=>{
     
-    Cookies.remove('userInfo')
+    Cookies.remove('user')
     router.push('/')
   }
 
@@ -124,17 +124,17 @@ const Layout = ({ children, title }) => {
         <title>{title?`${title}-HeyPI`: "HeyPi"} </title>
       </Head>
 
-      <Popover className="relative bg-white dark:bg-gray-900">
+      <Popover className="relative bg-white :bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <span className="sr-only">Workflow</span>
               <Link href="/" passHref>
-                <h1 className="text-2xl dark:text-gray-300 cursor-pointer font-medium">HackerNews</h1>
+                <h1 className="text-2xl :text-gray-300 cursor-pointer font-medium">HackerNews</h1>
               </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
-              <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center  dark:bg-gray-800 justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+              <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center  :bg-gray-800 justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                 <span className="sr-only">Open menu</span>
                 <MenuIcon className="h-6 w-6" aria-hidden="true" />
               </Popover.Button>
@@ -144,16 +144,16 @@ const Layout = ({ children, title }) => {
   
 
               <Link href="/new" passHref>
-              <p className="text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500 hover:text-gray-900">New</p>
+              <p className="text-base font-medium cursor-pointer :text-gray-300 text-gray-500 hover:text-gray-900">New</p>
               </Link>
 
               <Link href="/community" passHref>
-              <p className="text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500 hover:text-gray-900">Community</p>
+              <p className="text-base font-medium cursor-pointer :text-gray-300 text-gray-500 hover:text-gray-900">Community</p>
                
               </Link>
 {/* 
               <Link href="/about" passHref>
-              <p className="text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500 hover:text-gray-900">About</p>
+              <p className="text-base font-medium cursor-pointer :text-gray-300 text-gray-500 hover:text-gray-900">About</p>
                
               </Link> */}
 
@@ -161,7 +161,7 @@ const Layout = ({ children, title }) => {
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
 
               {/* //checks if userinfo is present if present, show user's name */}
-              {!Cookies.get('userInfo') ? (
+              {!Cookies.get('user') ? (
                 <a
                   onClick={() => router.push("/auth/login")}
                   className="ml-8 cursor-pointer whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
@@ -170,80 +170,9 @@ const Layout = ({ children, title }) => {
                 </a>
               ) : (
               //  mapping the contents of the drop down on the name componets
-                <>
-                
-                <Link href="/newcode" passHref>
-                <button className=" px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                    New
-                </button>
-                </Link>
-
-                <Popover className="relative">
-                  
-                {({ open }) => (
-                  <>
-                    <Popover.Button
-                      className={classNames(
-                        open ? "" : "",
-                        "group  rounded-md inline-flex items-center text-base font-medium  ",
-                        "ml-8 whitespace-nowrap cursor-pointer inline-flex items-center justify-center px-4 py-2   rounded-md  text-base font-bold "
-                      )}
-                    >
-                    
-                      
-                      <div className="relative flex-shrink-0 px-2 text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500">
-                        <h1>{name}</h1>
-                      </div>
-                     
-                      {/* <span>{name}</span> */}
-                    </Popover.Button>
-
-                    <Transition
-                      as={Fragment}
-                      enter="transition ease-out duration-200"
-                      enterFrom="opacity-0 translate-y-1"
-                      enterTo="opacity-100 translate-y-0"
-                      leave="transition ease-in duration-150"
-                      leaveFrom="opacity-100 translate-y-0"
-                      leaveTo="opacity-0 translate-y-1"
-                    >
-                      <Popover.Panel className="absolute z-10 left-1/2 transform -translate-x-1/2 mt-3 px-2 w-40 max-w-md sm:px-0">
-                        <div className="rounded-lg text-center shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                          <div className="relative text-center grid gap-2 bg-white dark:bg-gray-800  py-1 sm:gap-8 sm:p-8">
-                          <a 
-                              
-                      onClick={()=>router.push("/newquestion")}
-                                className="-m-3 cursor-pointer text-center  items-start rounded-lg hover:bg-gray-700"
-                              >
-                                      <p  className="text-base text-center cursor-pointer dark:text-gray-300 text-gray-500">
-                                      Ask
-                                   </p>
-                              </a>
-                              <a 
-                              
-                      onClick={()=>router.push("/myapi")}
-                                className="-m-3 cursor-pointer text-center  items-start rounded-lg hover:bg-gray-700"
-                              >
-                                      <p  className="text-base text-center cursor-pointer dark:text-gray-300 text-gray-500">
-                                      My Api
-                                   </p>
-                              </a>
-                              <a
-                               onClick={logoutHandler}
-                                className="-m-3 cursor-pointer text-center  items-start rounded-lg hover:bg-gray-700"
-                              >
-                                      <p style={{color:"red"}}  className="text-base text-center dark:text-gray-300 text-red-500">
-                                      logout
-                                   </p>
-                              </a>
-                          </div>
-                        </div>
-                      </Popover.Panel>
-                    </Transition>
-                  </>
-                )}
-              </Popover>
-              </>
+                <a onClick={logoutHandler} className="text-red-500 cursor-pointer">
+                  Logout
+                </a>
               )}
             </div>
           </div>
@@ -264,16 +193,16 @@ const Layout = ({ children, title }) => {
         >
           <Popover.Panel
             focus
-            className="relative  top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden  dark:bg-gray-800"
+            className="relative  top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden  :bg-gray-800"
           >
-            <div className="rounded-lg shadow-lg ring-1  dark:bg-gray-800 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+            <div className="rounded-lg shadow-lg ring-1  :bg-gray-800 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
               <div className="pt-5 pb-6 px-5">
                 <div className="flex items-center justify-between">
                   <div>
                     
                   </div>
                   <div className="-mr-2">
-                    <Popover.Button className="bg-white  dark:bg-gray-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <Popover.Button className="bg-white  :bg-gray-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                       <span className="sr-only">Close menu</span>
                       <XIcon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
@@ -285,13 +214,13 @@ const Layout = ({ children, title }) => {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50 dark:text-gray-300"
+                        className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50 :text-gray-300"
                       >
                         <div className="flex-shrink-0 h-6 w-6 text-indigo-600"
                           aria-hidden="true">
                             {item.icon}
                         </div>
-                        <span className="ml-3 text-base font-medium text-gray-900 dark:text-gray-300">
+                        <span className="ml-3 text-base font-medium text-gray-900 :text-gray-300">
                           {item.name}
                         </span>
                         
@@ -330,11 +259,11 @@ const Layout = ({ children, title }) => {
                 </button>
                 </Link>
                 <Link href="/newquestion" passHref>
-                        <h1 className="font-medium py-3 px-4 cursor-pointer dark:text-gray-300">Ask</h1>
+                        <h1 className="font-medium py-3 px-4 cursor-pointer :text-gray-300">Ask</h1>
                       </Link>
 
                       <Link href="/myapi" passHref>
-                        <h1 className="font-medium py-3 px-4 cursor-pointer dark:text-gray-300">My Api</h1>
+                        <h1 className="font-medium py-3 px-4 cursor-pointer :text-gray-300">My Api</h1>
                       </Link>
 
                       <div 
@@ -361,13 +290,13 @@ const Layout = ({ children, title }) => {
         {children}
         </div>
       
-      <footer className="flex flex-col items-center justify-between px-6 py-4 bg-white dark:bg-gray-800 sm:flex-row">
-            <a href="#" className="text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">Brand</a>
+      <footer className="flex flex-col items-center justify-between px-6 py-4 bg-white :bg-gray-800 sm:flex-row">
+            <a href="#" className="text-xl font-bold text-gray-800 :text-white hover:text-gray-700 :hover:text-gray-300">Brand</a>
             
-            <p className="py-2 text-gray-800 dark:text-white sm:py-0">All rights reserved</p>
+            <p className="py-2 text-gray-800 :text-white sm:py-0">All rights reserved</p>
 
             <div className="flex -mx-2">
-                <a href="#" className="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit">
+                <a href="#" className="mx-2 text-gray-600 :text-gray-300 hover:text-gray-500 :hover:text-gray-300" aria-label="Reddit">
                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -376,7 +305,7 @@ const Layout = ({ children, title }) => {
                     </svg>
                 </a>
 
-                <a href="#" className="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300"
+                <a href="#" className="mx-2 text-gray-600 :text-gray-300 hover:text-gray-500 :hover:text-gray-300"
                     aria-label="Facebook">
                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -386,7 +315,7 @@ const Layout = ({ children, title }) => {
                     </svg>
                 </a>
 
-                <a href="#" className="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Github">
+                <a href="#" className="mx-2 text-gray-600 :text-gray-300 hover:text-gray-500 :hover:text-gray-300" aria-label="Github">
                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
