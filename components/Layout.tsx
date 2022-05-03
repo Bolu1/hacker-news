@@ -29,10 +29,10 @@ import Image from "next/image";
 const solutions = [
   {
     
-    name: "Home",
+    name: "New",
     description:
       "Get a better understanding of where your traffic is coming from.",
-    href: "/",
+    href: "/new",
     icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
   </svg>,
@@ -45,23 +45,7 @@ const solutions = [
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
   </svg>,
   },
-  {
-    name: "Community",
-    description: "Your customers' data will be safe and secure.",
-    href: "/community",
-    icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-  </svg>,
-  },
-
-  {
-    name: "About",
-    description: "Your customers' data will be safe and secure.",
-    href: "/aboutus",
-    icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-  </svg>,
-  },
+ 
 
 ];
 const callsToAction = [
@@ -72,24 +56,17 @@ const callsToAction = [
 // contents of the dropdown for the profile
 const resources = [
   {
-    name: "Profile",
+    name: "new",
     description:
       "Get all of your questions answered in our forums or contact support.",
-    href: "/profile",
-    icon: SupportIcon,
+    href: "/new",
   },
   {
-    name: "Orders",
+    name: "search",
     description:
       "Learn how to maximize our platform to get the most out of it.",
-    href: "/order-history",
+    href: "/search",
     icon: BookmarkAltIcon,
-  },
-  {
-    name: "Logout",
-    description: "Understand how we take your privacy seriously.",
-    href: "#",
-    icon: ShieldCheckIcon,
   },
 ];
 
@@ -145,11 +122,6 @@ const Layout = ({ children, title }) => {
 
               <Link href="/new" passHref>
               <p className="text-base font-medium cursor-pointer :text-gray-300 text-gray-500 hover:text-gray-900">New</p>
-              </Link>
-
-              <Link href="/community" passHref>
-              <p className="text-base font-medium cursor-pointer :text-gray-300 text-gray-500 hover:text-gray-900">Community</p>
-               
               </Link>
 
               <Link href="/search" passHref>
@@ -216,10 +188,6 @@ const Layout = ({ children, title }) => {
                         href={item.href}
                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50 :text-gray-300"
                       >
-                        <div className="flex-shrink-0 h-6 w-6 text-indigo-600"
-                          aria-hidden="true">
-                            {item.icon}
-                        </div>
                         <span className="ml-3 text-base font-medium text-gray-900 :text-gray-300">
                           {item.name}
                         </span>
@@ -229,50 +197,19 @@ const Layout = ({ children, title }) => {
                   </nav>
                 </div>
               </div>
-              {!Cookies.get('userInfo') ? (
-              <div className="py-6 px-5 space-y-6">
-                <div>
-                  <a
-                    href="/register"
-                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                  >
-                    Sign up
-                  </a>
-                  <p className="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing customer?{" "}
-                    <a
-                      href="/login"
-                      className="text-indigo-600 hover:text-indigo-500"
-                    >
-                      Sign in
-                    </a>
-                  </p>
-                </div>
-              </div>): 
-                  <div className="py-4 px-4 space-x-4 flex">
-                      
-                        <h1 className="font-medium py-3 px-4 cursor-pointer text-gray-100">{name}</h1>
-
-                        <Link href="/newcode" passHref>
-                <button className=" px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                    New
-                </button>
-                </Link>
-                <Link href="/newquestion" passHref>
-                        <h1 className="font-medium py-3 px-4 cursor-pointer :text-gray-300">Ask</h1>
-                      </Link>
-
-                      <Link href="/myapi" passHref>
-                        <h1 className="font-medium py-3 px-4 cursor-pointer :text-gray-300">My Api</h1>
-                      </Link>
-
-                      <div 
-                       onClick={logoutHandler}>
-                        <h1 className="font-medium py-3 px-4 cursor-pointer" style={{color: "red"}}>Logout</h1>
-                      </div>
-
-                  </div>
-              }
+              {!Cookies.get('user') ? (
+                <a
+                  onClick={() => router.push("/auth/login")}
+                  className="ml-8 cursor-pointer whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                >
+                  Login
+                </a>
+              ) : (
+              //  mapping the contents of the drop down on the name componets
+                <a onClick={logoutHandler} className="text-red-500 ml-8 text-base font-medium cursor-pointer">
+                  Logout
+                </a>
+              )}
             </div>
           </Popover.Panel>
         </Transition>
