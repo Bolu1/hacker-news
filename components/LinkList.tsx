@@ -6,40 +6,33 @@ import client from "../apollo-client";
 
 const LinkList = () => {
 //   const { data } = useQuery(FEED_QUERY);
-const [data, setData] = useState([])
-useEffect(async() => {
-    const FEED_QUERY = gql`
-    {
-      feed {
+
+const FEED_QUERY = gql`
+  {
+    feed {
+      id
+      links {
         id
-        links {
-          id
-          createdAt
-          url
-          description
-        }
+        createdAt
+        url
+        description
       }
     }
-  `;
-  const get = async() =>{
-  const {data} = await client.query({
-      query: gql`
-        query ${FEED_QUERY}
-      `,
-    });
-    setData(data.feed.links)
   }
-  const data = await get()
-}, [setData])
+`
 
-
+const { data } = useQuery(FEED_QUERY);
 
   return (
     <div>
-      {data.map((link) => (
-        <Link key={link.id} link={link} />
-      ))}
-    </div>
+    {data && (
+      <>
+        {data.feed.links.map((link) => (
+          <Link key={link.id} link={link} />
+        ))}
+      </>
+    )}
+  </div>
   );
 };
 

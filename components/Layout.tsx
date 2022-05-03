@@ -130,7 +130,7 @@ const Layout = ({ children, title }) => {
             <div className="flex justify-start lg:w-0 lg:flex-1">
               <span className="sr-only">Workflow</span>
               <Link href="/" passHref>
-                <h1 className="text-2xl dark:text-gray-300 cursor-pointer font-medium">HeyPI</h1>
+                <h1 className="text-2xl dark:text-gray-300 cursor-pointer font-medium">HackerNews</h1>
               </Link>
             </div>
             <div className="-mr-2 -my-2 md:hidden">
@@ -141,24 +141,21 @@ const Layout = ({ children, title }) => {
             </div>
             <Popover.Group as="nav" className="hidden md:flex space-x-10">
               
-            <Link href="/" passHref>
-                <p className="text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500 hover:text-gray-900"> Home</p>
-               
-              </Link>
+  
 
-              <Link href="/search" passHref>
-              <p className="text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500 hover:text-gray-900">Search</p>
+              <Link href="/new" passHref>
+              <p className="text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500 hover:text-gray-900">New</p>
               </Link>
 
               <Link href="/community" passHref>
               <p className="text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500 hover:text-gray-900">Community</p>
                
               </Link>
-
+{/* 
               <Link href="/about" passHref>
               <p className="text-base font-medium cursor-pointer dark:text-gray-300 text-gray-500 hover:text-gray-900">About</p>
                
-              </Link>
+              </Link> */}
 
             </Popover.Group>
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">

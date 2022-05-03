@@ -36,7 +36,7 @@ const [createLink] = useMutation(CREATE_LINK_MUTATION, {
   }
 
   return (
-    <div>
+    <div className="flex justify-center mt-10" >
       <form
       className="mt-5"
         onSubmit={onSubmit}
@@ -67,9 +67,11 @@ const [createLink] = useMutation(CREATE_LINK_MUTATION, {
             placeholder="The URL for the link"
           />
         </div>
+        <div className="flex justify-center mt-10">
         <button 
         className="m-5 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-indigo-600 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
         type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );
