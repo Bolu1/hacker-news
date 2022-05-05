@@ -47,7 +47,7 @@ const CreateLink = () => {
     //   });
     // },
     onCompleted: () =>
-      location.replace("http://localhost:3000/"),
+      location.replace("https://hacker-news-black.vercel.app/"),
   });
 
   const onSubmit = async (e) => {
