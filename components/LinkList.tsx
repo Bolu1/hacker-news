@@ -3,6 +3,8 @@ import Link from "./Link";
 import { useQuery, gql } from "@apollo/client";
 import dynamic from "next/dynamic";
 import client from "../apollo-client";
+import { useRouter } from "next/router";
+import Cookie from "js-cookie"
 
 export const FEED_QUERY = gql`
   {
@@ -31,14 +33,26 @@ export const FEED_QUERY = gql`
 
 export default function LinkedList(props) {
 
+  const router = useRouter()
+  const {page} = router.query
+  if(! Cookie.get('page')){
+    Cookie.set('page', 10)
+  }
+  var p = Cookie.get('page')
+  if(p == 0){
+    p = 10
+  }
+  console.log(p)
 
-const { data } = useQuery(FEED_QUERY);
+  const { data } = useQuery(FEED_QUERY);
+// const d = data.feed.links.slice(0, 5)
+
 
   return (
-    <div>
+    <div style={{minHeight:"70vh"}} >
     {data && (
       <>
-        {data.feed.links.map((link, index) => (
+        {data.feed.links.slice(p-10,p).map((link, index) => (
           <Link key={link.id} link={link} index={index} />
         ))}
       </>

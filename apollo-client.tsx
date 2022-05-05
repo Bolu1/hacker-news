@@ -7,13 +7,13 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : ''
+      authorization: token ? `JWT ${token}` : ''
     }
   };
 });
 
 const httpLink = createHttpLink({
-    uri: 'http://localhost:4000'
+    uri: 'https://hnserver.herokuapp.com/'
   });
 
 const client = new ApolloClient({

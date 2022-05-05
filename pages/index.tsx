@@ -11,6 +11,7 @@ import { gql, ApolloProvider } from "@apollo/client";
 import client from "../apollo-client";
 import LinkList from "../components/LinkList";
 import CreateLink from "../components/Createlink";
+import { Pagination } from "../components/Pagination";
 
 export default function Home(props) {
   const router = useRouter()
@@ -20,6 +21,7 @@ export default function Home(props) {
   return (
     <Layout title="Home">
       <LinkList/>
+      <Pagination/>
     </Layout>
   );
 };
